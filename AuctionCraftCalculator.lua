@@ -5,7 +5,7 @@ local AuctionCraftCalculator = LibStub("AceAddon-3.0"):NewAddon("AuctionCraftCal
 local craftableItems = {
   ["Best in Slot"] = {
       ["Lionheart Helm"] = {
-          resultItemID = "12640",  -- Example finished product ID (update as needed)
+          resultItemID = "12640",
           materials = {
               { name = "Thorium Bar",          quantity = 80,  itemString = "12359" },
               { name = "Arcanite Bar",         quantity = 12,  itemString = "12360" },
@@ -25,7 +25,7 @@ local craftableItems = {
           },
       },
       ["Hide of the Wild"] = {
-          resultItemID = "18510",  -- Example finished product ID
+          resultItemID = "18510",
           materials = {
               { name = "Rugged Leather",       quantity = 30,  itemString = "8170" },
               { name = "Living Essence",       quantity = 12,  itemString = "12803" },
@@ -35,7 +35,7 @@ local craftableItems = {
           },
       },
       ["Robe of the Void"] = {
-          resultItemID = "14153",  -- Example finished product ID
+          resultItemID = "14153",
           materials = {
               { name = "Bolt of Runecloth",    quantity = 12,  itemString = "14048" },
               { name = "Demonic Rune",         quantity = 20,  itemString = "12662" },
@@ -47,7 +47,7 @@ local craftableItems = {
   },
   ["Enchanting"] = {
       ["Enchant Weapon - Crusader"] = {
-          resultItemID = "0",  -- No finished product item ID; leave as "0" to skip finished price lookup.
+          resultItemID = "0",
           materials = {
               { name = "Large Brilliant Shard", quantity = 4, itemString = "14344" },
               { name = "Righteous Orb",         quantity = 2, itemString = "12811" },
@@ -277,7 +277,6 @@ function AuctionCraftCalculator:CalculateCost()
 
   local materials = recipeData.materials
   local totalCost = 0
-  local missingPrice = false
 
   print("|cffffff00[Cost Calc] Calculating material cost for " .. category .. " - " .. recipeName .. "...|r")
   for _, item in ipairs(materials) do
@@ -288,17 +287,13 @@ function AuctionCraftCalculator:CalculateCost()
       totalCost = totalCost + cost
       print(string.format("%s: %d x %.2fg = %.2fg", item.name, item.quantity, priceCopper/10000, cost/10000))
     else
-      print(string.format("|cffff0000Price for %s not found.|r", item.name))
-      missingPrice = true
+      -- Even if the price isn't found (soulbound or missing), use 0 as the price.
+      print(string.format("|cffff0000Price for %s not found. Using 0.|r", item.name))
+      totalCost = totalCost + 0
     end
   end
 
-  if missingPrice then
-    print("|cffff0000Unable to calculate total material cost due to missing prices.|r")
-    return
-  else
-    print(string.format("|cffffff00Total material cost for %s - %s: %.2fg|r", category, recipeName, totalCost/10000))
-  end
+  print(string.format("|cffffff00Total material cost for %s - %s: %.2fg|r", category, recipeName, totalCost/10000))
 
   -- Look up the finished product's current AH price if a valid resultItemID is provided.
   local resultItemID = recipeData.resultItemID
