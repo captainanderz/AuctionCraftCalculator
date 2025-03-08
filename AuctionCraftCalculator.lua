@@ -84,9 +84,16 @@ local craftableItems = {
       ["Enchant Chest - Greater Stats"] = {
           resultItemID = "0",
           materials = {
-              { name = "Large Brilliant Shard", quantity = 4, itemString = "14344" },
-              { name = "Illusion Dust",         quantity = 15,itemString = "16204" },
+              { name = "Large Brilliant Shard",  quantity = 4, itemString = "14344" },
+              { name = "Illusion Dust",          quantity = 15,itemString = "16204" },
               { name = "Greater Eternal Essence",quantity = 10,itemString = "16203" },
+          },
+      },
+      ["Enchant Gloves - Greater Strength"] = {
+          resultItemID = "0",
+          materials = {              
+              { name = "Illusion Dust",          quantity = 4,itemString = "16204" },
+              { name = "Greater Eternal Essence",quantity = 4,itemString = "16203" },
           },
       },
       ["Enchant Bracer - Superior Strength"] = {
@@ -107,6 +114,12 @@ local craftableItems = {
           resultItemID = "0",
           materials = {
               { name = "Greater Eternal Essence",quantity = 8,itemString = "16203" },
+          },
+      },
+      ["Enchant Cloak - Lesser Agility"] = {
+          resultItemID = "0",
+          materials = {
+              { name = "Lesser Nether Essence",quantity = 2,itemString = "11174" },
           },
       },
   },
