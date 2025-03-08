@@ -34,6 +34,16 @@ local craftableItems = {
               { name = "Cured Rugged Hide",    quantity = 3,   itemString = "15407" },
           },
       },
+      ["Robe of the Void"] = {
+          resultItemID = "14153",  -- Example finished product ID
+          materials = {
+              { name = "Bolt of Runecloth",    quantity = 12,  itemString = "14048" },
+              { name = "Demonic Rune",         quantity = 20,  itemString = "12662" },
+              { name = "Felcloth",             quantity = 40,  itemString = "14256" },
+              { name = "Essence of Fire",      quantity = 12,  itemString = "7078" },
+              { name = "Essence of Undeath",   quantity = 12,  itemString = "12808" },
+          },
+      },
   },
   ["Enchanting"] = {
       ["Enchant Weapon - Crusader"] = {
